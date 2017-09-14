@@ -51,6 +51,7 @@ shmsDC2x2Planes5     Counts: {shmsDC2_5hits_x2.npassed} eff : {shmsDC2_6hits_x2.
 SHMS Calorimeter Efficiencies
 
 shmsPreShower	     Counts: {P.cal.stat_trksum1} eff : {P.cal.stat_hitsum1 / P.cal.stat_trksum1}
+shmsShowerArray	     Counts: {P.cal.stat_trksum_array} eff : {P.cal.stat_hitsum_array / P.cal.stat_trksum_array}
 
 ******************************
 * SHMS TRACKING EFFICIENCIES *
