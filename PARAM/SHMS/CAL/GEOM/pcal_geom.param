@@ -21,7 +21,7 @@ pcal_c_cor = 64.36, 64.36	# for positive and negative sides
 pcal_d_cor =  1.66,  1.66
 
 ; Parameters copied from HMS
-; Slop in x possition.  Allowed distance between track and edge of block
+; Slope in x position.  Allowed distance between track and edge of block
 pcal_slop = 7.5 
 
 pcal_pr_thick = 10.0
