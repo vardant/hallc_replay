@@ -20,6 +20,7 @@ void replay_hms_scalers(Int_t RunNumber=0, Int_t MaxEvent=0) {
   vector<TString> pathList;
     pathList.push_back(".");
     pathList.push_back("./raw");
+    pathList.push_back("./raw/../raw.copiedtotape");
     pathList.push_back("./cache");
 
   const char* ROOTFileNamePattern = "ROOTfiles/hms_replay_scalers_%d_%d.root";
@@ -53,7 +54,7 @@ void replay_hms_scalers(Int_t RunNumber=0, Int_t MaxEvent=0) {
   gHaEvtHandlers->Add(hcepics);
   // Add event handler for scaler events
   THcScalerEvtHandler *hscaler = new THcScalerEvtHandler("H","Hall C scaler event type 129");
-  hscaler->AddEvtType(129);
+  hscaler->AddEvtType(1);
   hscaler->SetUseFirstEvent(kTRUE);
   gHaEvtHandlers->Add(hscaler);
   // Add event handler for DAQ configuration event

@@ -10,10 +10,10 @@ TH1F ptrig_p1y_tdc_raw 'SHMS p1y Raw TDC Time; Raw TDC Time (TDC Units); Counts 
 TH1F ptrig_p2x_tdc_raw 'SHMS p2x Raw TDC Time; Raw TDC Time (TDC Units); Counts / 1 TDC Units;' T.shms.p2X_tdcTimeRaw 4000 0 4000
 TH1F ptrig_p2y_tdc_raw 'SHMS p2y Raw TDC Time; Raw TDC Time (TDC Units); Counts / 1 TDC Units;' T.shms.p2Y_tdcTimeRaw 4000 0 4000
 
-TH1F ptrig_p1x_tdc 'SHMS p1x TDC Time; TDC Time (ns); Counts / 0.1 ns;' T.shms.p1X_tdcTime 4000 0 400
-TH1F ptrig_p1y_tdc 'SHMS p1y TDC Time; TDC Time (ns); Counts / 0.1 ns;' T.shms.p1Y_tdcTime 4000 0 400
-TH1F ptrig_p2x_tdc 'SHMS p2x TDC Time; TDC Time (ns); Counts / 0.1 ns;' T.shms.p2X_tdcTime 4000 0 400
-TH1F ptrig_p2y_tdc 'SHMS p2y TDC Time; TDC Time (ns); Counts / 0.1 ns;' T.shms.p2Y_tdcTime 4000 0 400
+TH1F ptrig_p1x_tdc 'SHMS p1x TDC Time; TDC Time (ns); Counts / 1 ns;' T.shms.p1X_tdcTime 400 0 400
+TH1F ptrig_p1y_tdc 'SHMS p1y TDC Time; TDC Time (ns); Counts / 1 ns;' T.shms.p1Y_tdcTime 400 0 400
+TH1F ptrig_p2x_tdc 'SHMS p2x TDC Time; TDC Time (ns); Counts / 1 ns;' T.shms.p2X_tdcTime 400 0 400
+TH1F ptrig_p2y_tdc 'SHMS p2y TDC Time; TDC Time (ns); Counts / 1 ns;' T.shms.p2Y_tdcTime 400 0 400
 
 
 #-----------------------
@@ -22,21 +22,23 @@ TH1F ptrig_p2y_tdc 'SHMS p2y TDC Time; TDC Time (ns); Counts / 0.1 ns;' T.shms.p
 TH1F ptrig_p1T_tdc_raw 'SHMS p1x/p1y Coincidence Raw TDC Time; Raw TDC Time (TDC Units); Counts / 1 TDC Units;' T.shms.p1T_tdcTimeRaw 4000 0 4000
 TH1F ptrig_p2T_tdc_raw 'SHMS p2x/p2y Coincidence Raw TDC Time; Raw TDC Time (TDC Units); Counts / 1 TDC Units;' T.shms.p2T_tdcTimeRaw 4000 0 4000
 
-TH1F ptrig_p1T_tdc 'SHMS p1x/p1y Coincidence TDC Time; TDC Time (ns); Counts / 0.1 ns;' T.shms.p1T_tdcTime 4000 0 400
-TH1F ptrig_p2T_tdc 'SHMS p2x/p2y Coincidence TDC Time; TDC Time (ns); Counts / 0.1 ns;' T.shms.p2T_tdcTime 4000 0 400
+TH1F ptrig_p1T_tdc 'SHMS p1x/p1y Coincidence TDC Time; TDC Time (ns); Counts / 1 ns;' T.shms.p1T_tdcTime 400 0 400
+TH1F ptrig_p2T_tdc 'SHMS p2x/p2y Coincidence TDC Time; TDC Time (ns); Counts / 1 ns;' T.shms.p2T_tdcTime 400 0 400
 
 
 #--------------
 # SHMS TRIGGER
 #--------------
-TH1F ptrig_pT1_tdc_raw 'SHMS p1x/p1y/p2x/p2y Coincidence Raw TDC Time (Slot 20, Channel 15); Raw TDC Time (TDC Units); Counts / 1 TDC Units;' T.shms.pT1_tdcTimeRaw 4000 0 4000
-TH1F ptrig_pT2_tdc_raw 'SHMS p1x/p1y/p2x/p2y Coincidence Raw TDC Time (Slot 19, Channel 31); Raw TDC Time (TDC Units); Counts / 1 TDC Units;' T.shms.pT2_tdcTimeRaw 4000 0 4000
-TH1F ptrig_pT3_tdc_raw 'SHMS p1x/p1y/p2x/p2y Coincidence Raw TDC Time (Slot 19, Channel 38); Raw TDC Time (TDC Units); Counts / 1 TDC Units;' T.shms.pT3_tdcTimeRaw 4000 0 4000
+TH1F ptrig_pT1_tdc_raw 'SHMS pT1 Raw TDC Time (Slot 20, Channel 15); Raw TDC Time (TDC Units); Counts / 1 TDC Units;' T.shms.pT1_tdcTimeRaw 4000 0 4000
+TH1F ptrig_pT2_tdc_raw 'SHMS pT2 Raw TDC Time (Slot 19, Channel 31); Raw TDC Time (TDC Units); Counts / 1 TDC Units;' T.shms.pT2_tdcTimeRaw 4000 0 4000
+TH1F ptrig_pT3_tdc_raw 'SHMS pT3 Raw TDC Time (Slot 19, Channel 38); Raw TDC Time (TDC Units); Counts / 1 TDC Units;' T.shms.pT3_tdcTimeRaw 4000 0 4000
 
-TH1F ptrig_pT1_tdc 'SHMS p1x/p1y/p2x/p2y Coincidence TDC Time (Slot 20, Channel 15); TDC Time (ns); Counts / 0.1 ns;' T.shms.pT1_tdcTime 4000 0 800
-TH1F ptrig_pT2_tdc 'SHMS p1x/p1y/p2x/p2y Coincidence TDC Time (Slot 19, Channel 31); TDC Time (ns); Counts / 0.1 ns;' T.shms.pT2_tdcTime 4000 0 800
-TH1F ptrig_pT3_tdc 'SHMS p1x/p1y/p2x/p2y Coincidence TDC Time (Slot 19, Channel 38); TDC Time (ns); Counts / 0.1 ns;' T.shms.pT3_tdcTime 4000 0 800
+TH1F ptrig_pT1_tdc 'SHMS pT1 TDC Time (Slot 20, Channel 15); TDC Time (ns); Counts / 1 ns;' T.shms.pT1_tdcTime 800 0 800
+TH1F ptrig_pT2_tdc 'SHMS pT2 TDC Time (Slot 19, Channel 31); TDC Time (ns); Counts / 1 ns;' T.shms.pT2_tdcTime 800 0 800
+TH1F ptrig_pT3_tdc 'SHMS pT3 TDC Time (Slot 19, Channel 38); TDC Time (ns); Counts / 1 ns;' T.shms.pT3_tdcTime 800 0 800
 
+TH1F ptrig_pFADC_TREF_ROC2_ptime     'SHMS pFADC_TREF_ROC2 Pulse Time; Pulse Time (ns); Counts / 1 ns;' T.shms.pFADC_TREF_ROC2_adcPulseTime 800 0 800
+TH1F ptrig_pFADC_TREF_ROC2_ptime_raw 'SHMS pFADC_TREF_ROC2 Raw Pulse Time; Raw Pulse Time (ADC Units); Counts / 1 ADC Unit;' T.shms.pFADC_TREF_ROC2_adcPulseTimeRaw 4000 0 4000
 
 #---------
 # SHMS DC
@@ -73,6 +75,7 @@ TH1F ptrig_pngc_sum_pint_raw  'SHMS Noble Gas Sum FADC Raw Pulse Integral; Pulse
 TH1F ptrig_pngc_sum_pamp      'SHMS Noble Gas Sum FADC Pulse Amplitude; Pulse Amplitude; Number of Entries / 2 mV'             T.shms.pNGCSUM_adcPulseAmp     700  -400 1000
 TH1F ptrig_pngc_sum_pamp_raw  'SHMS Noble Gas Sum FADC Raw Pulse Amplitude; Pulse Amplitude; Number of Entries / 10 ADC Units' T.shms.pNGCSUM_adcPulseAmpRaw  450  0 4100
 TH1F ptrig_pngc_sum_ptime_raw 'SHMS Noble Gas Sum FADC Raw Pulse Time; Pulse Time; Number of Entries / 10 ADC Units'           T.shms.pNGCSUM_adcPulseTimeRaw 410  0 4100
+TH1F ptrig_pngc_sum_ptime 'SHMS Noble Gas Sum FADC Pulse Time; Pulse Time (ns); Number of Entries '           T.shms.pNGCSUM_adcPulseTimeRaw 410  0 410
 TH1F ptrig_pngc_sum_tdc       'SHMS Noble Gas Sum TDC Time; TDC Time; Number of Entries / 0.1 ns'                              T.shms.pNGCSUM_tdcTime         4000 0 400
 TH1F ptrig_pngc_sum_tdc_raw   'SHMS Noble Gas Sum Raw TDC Time; TDC Time; Number of Entries / 1 TDC Units'                     T.shms.pNGCSUM_tdcTimeRaw      4000 0 4000
 
@@ -86,5 +89,6 @@ TH1F ptrig_phgc_sum_pint_raw  'SHMS Heavy Gas Sum FADC Raw Pulse Integral; Pulse
 TH1F ptrig_phgc_sum_pamp      'SHMS Heavy Gas Sum FADC Pulse Amplitude; Pulse Amplitude; Number of Entries / 2 mV'             T.shms.pHGCSUM_adcPulseAmp     700  -400 1000
 TH1F ptrig_phgc_sum_pamp_raw  'SHMS Heavy Gas Sum FADC Raw Pulse Amplitude; Pulse Amplitude; Number of Entries / 10 ADC Units' T.shms.pHGCSUM_adcPulseAmpRaw  450  0 4100
 TH1F ptrig_phgc_sum_ptime_raw 'SHMS Heavy Gas Sum FADC Raw Pulse Time; Pulse Time; Number of Entries / 10 ADC Units'           T.shms.pHGCSUM_adcPulseTimeRaw 410  0 4100
+TH1F ptrig_phgc_sum_ptime 'SHMS Heavy Gas Sum FADC Pulse Time; Pulse Time ; Number of Entries '           T.shms.pHGCSUM_adcPulseTimeRaw 410  0 410
 TH1F ptrig_phgc_sum_tdc       'SHMS Heavy Gas Sum TDC Time; TDC Time; Number of Entries / 0.1 ns'                              T.shms.pHGCSUM_tdcTime         4000 0 400
 TH1F ptrig_phgc_sum_tdc_raw   'SHMS Heavy Gas Sum Raw TDC Time; TDC Time; Number of Entries / 1 TDC Units'                     T.shms.pHGCSUM_tdcTimeRaw      4000 0 4000
