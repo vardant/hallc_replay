@@ -25,6 +25,11 @@ and beta. The code does not iterate the gain constants.  The user is
 free to modify cuts in the input file as needed. Caution must be
 exercised not to alter the format of the file.
 
+The steering script hcal_calib.cpp takes 3 parameters: prefix of the
+root file to be calibrated, last (-1 by default) and the first (0 by
+default) events to be used for calibration. The -1 value for last
+event number defaults to the number of entries in the root file.
+
 Once your hcana, hallc_replay and Root are set up, you can compile and
 run hcal_calib under hcana, by issuing command
 
