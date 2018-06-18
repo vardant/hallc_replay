@@ -296,7 +296,6 @@ void THcShowerCalib::Init() {
   gROOT->Reset();
 
   char* fname = Form("ROOTfiles/%s.root",fPrefix.c_str());
-
   cout << "THcShowerCalib::Init: Root file name = " << fname << endl;
 
   TFile *f = new TFile(fname);
@@ -411,7 +410,7 @@ void THcShowerCalib::CalcThresholds() {
     if (nev > 200000) break;
   };
 
-  hEunc->Fit("gaus","","",0.5, 1.5);
+  hEunc->Fit("gaus","0","",0.5, 1.5);
   TF1 *fit = hEunc->GetFunction("gaus");
   Double_t gmean  = fit->GetParameter(1);
   Double_t gsigma = fit->GetParameter(2);
