@@ -84,6 +84,7 @@ class THcPShowerCalib {
   Double_t fBetaMin, fBetaMax;     // Beta range
   Double_t fHGCerMin;              // Threshold heavy gas Cerenkov signal, p.e.
   Double_t fNGCerMin;              // Threshold noble gas Cerenkov signal, p.e.
+  Double_t fAeroMin;               // Threshold Aerogel signal, p.e.
   UInt_t fMinHitCount;             // Min. number of hits/chan. for calibration
   Double_t fEuncLoLo, fEuncHiHi;   // Range of uncalibrated Edep histogram
   UInt_t fEuncNBin;                // Binning of uncalibrated Edep histogram
@@ -119,6 +120,7 @@ class THcPShowerCalib {
 
   Double_t        P_hgcer_npe[4];
   Double_t        P_ngcer_npe[4];
+  Double_t        P_aero_npe;
   Double_t        P_tr_beta;
 
   Double_t        P_cal_nclust;          //Preshower
@@ -141,6 +143,7 @@ class THcPShowerCalib {
   TBranch* b_P_tr_tg_y;
   TBranch* b_P_hgcer_npe;
   TBranch* b_P_ngcer_npe;
+  TBranch* b_P_aero_npe;
   TBranch* b_P_tr_beta;
 
   TBranch* b_P_cal_nclust;
@@ -220,6 +223,7 @@ void THcPShowerCalib::ReadThresholds() {
   fBetaMax = 0.;
   fHGCerMin = 999.;
   fNGCerMin = 999.;
+  fAeroMin = 999.;
   fMinHitCount = 999999;
 
   for (UInt_t ipmt=0; ipmt<THcPShTrack::fNpmts; ipmt++) {
@@ -239,6 +243,8 @@ void THcPShowerCalib::ReadThresholds() {
   iss >> fHGCerMin;
   getline(fin, line);  iss.str(line);
   iss >> fNGCerMin;
+  getline(fin, line);  iss.str(line);
+  iss >> fAeroMin;
   getline(fin, line);  iss.str(line);
   iss >> fMinHitCount;
   getline(fin, line);  iss.str(line);
@@ -302,6 +308,7 @@ void THcPShowerCalib::ReadThresholds() {
   cout << "  Beta min, max    = " << fBetaMin << "  " << fBetaMax << endl;
   cout << "  Heavy Gas Cerenkov min = " << fHGCerMin << endl;
   cout << "  Noble Gas Cerenkov min = " << fNGCerMin << endl;
+  cout << "  Aerogel min            = " << fAeroMin << endl;
   cout << "  Min. hit count   = " << fMinHitCount << endl;
   cout << "  Uncalibrated histo. range and binning: " << fEuncLoLo << "  "
        << fEuncHiHi << "  " << fEuncNBin << endl;
@@ -372,10 +379,29 @@ void THcPShowerCalib::Init() {
   fTree->SetBranchAddress("P.tr.tg_th", &P_tr_tg_th,&b_P_tr_tg_th);
   fTree->SetBranchAddress("P.tr.tg_y",  &P_tr_tg_y, &b_P_tr_tg_y);
  
+  fTree->SetBranchAddress("P.tr.beta", &P_tr_beta,&b_P_tr_beta);
+
+  //Alternative branch addresses from M.Jones, to be used instead of
+  //track quantities above.
+  /*
+  fTree->SetBranchAddress("P.dc.ntrack", &P_tr_n,&b_P_tr_n);
+  fTree->SetBranchAddress("P.dc.x_fp", &P_tr_x,&b_P_tr_x);
+  fTree->SetBranchAddress("P.dc.y_fp", &P_tr_y,&b_P_tr_y);
+  fTree->SetBranchAddress("P.dc.xp_fp",&P_tr_xp,&b_P_tr_xp);
+  fTree->SetBranchAddress("P.dc.yp_fp",&P_tr_yp,&b_P_tr_yp);
+  fTree->SetBranchAddress("P.gtr.p", &P_tr_p,&b_P_tr_p);
+
+  fTree->SetBranchAddress("P.gtr.dp", &P_tr_tg_dp,&b_P_tr_tg_dp);
+  fTree->SetBranchAddress("P.gtr.ph", &P_tr_tg_ph,&b_P_tr_tg_ph);
+  fTree->SetBranchAddress("P.gtr.th", &P_tr_tg_th,&b_P_tr_tg_th);
+  fTree->SetBranchAddress("P.gtr.y",  &P_tr_tg_y, &b_P_tr_tg_y);
+
+  fTree->SetBranchAddress("P.hod.beta", &P_tr_beta,&b_P_tr_beta);
+  */
+
   fTree->SetBranchAddress("P.hgcer.npe", P_hgcer_npe,&b_P_hgcer_npe);
   fTree->SetBranchAddress("P.ngcer.npe", P_ngcer_npe,&b_P_ngcer_npe);
-
-  fTree->SetBranchAddress("P.tr.beta", &P_tr_beta,&b_P_tr_beta);
+  fTree->SetBranchAddress("P.aero.npeSum", &P_aero_npe,&b_P_aero_npe);
 
   fTree->SetBranchAddress("P.cal.nclust", &P_cal_nclust,&b_P_cal_nclust);
   fTree->SetBranchAddress("P.cal.ntracks", &P_cal_ntracks,&b_P_cal_ntracks);
@@ -538,11 +564,11 @@ bool THcPShowerCalib::ReadShRawTrack(THcPShTrack &trk, UInt_t ientry) {
   good_trk = P_tr_xp > -0.045+0.0025*P_tr_x;
   if (!good_trk) return 0;
 
-  bool good_ngcer = P_ngcer_npe[0] > fNGCerMin ||
-		    P_ngcer_npe[1] > fNGCerMin ||
-		    P_ngcer_npe[2] > fNGCerMin ||
-		    P_ngcer_npe[3] > fNGCerMin  ;
-  if(!good_ngcer) return 0;
+  //  bool good_ngcer = P_ngcer_npe[0] > fNGCerMin ||
+  //                    P_ngcer_npe[1] > fNGCerMin ||
+  //                    P_ngcer_npe[2] > fNGCerMin ||
+  //                    P_ngcer_npe[3] > fNGCerMin  ;
+  //  if(!good_ngcer) return 0;
 
   bool good_hgcer = P_hgcer_npe[0] +
 		    P_hgcer_npe[1] +
@@ -550,9 +576,12 @@ bool THcPShowerCalib::ReadShRawTrack(THcPShTrack &trk, UInt_t ientry) {
 		    P_hgcer_npe[3] > fHGCerMin  ;
   if(!good_hgcer) return 0;
 
-  bool good_beta = P_tr_beta > fBetaMin &&
-                   P_tr_beta < fBetaMax ;
-  if(!good_beta) return 0;
+  bool good_aero = P_aero_npe > fAeroMin ;
+  if(!good_aero) return 0;
+
+  ////  bool good_beta = P_tr_beta > fBetaMin &&
+  ////                   P_tr_beta < fBetaMax ;
+  ////  if(!good_beta) return 0;
 
   // Set track coordinates and slopes at the face of Preshower.
 
