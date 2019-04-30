@@ -344,16 +344,28 @@ void THcShowerCalib::Init() {
 			  &b_H_cal_4ta_apos_p);
 
   fTree->SetBranchAddress("H.tr.n", &H_tr_n,&b_H_tr_n);
+
   fTree->SetBranchAddress("H.tr.x",&H_tr_x,&b_H_tr_x);
   fTree->SetBranchAddress("H.tr.y",&H_tr_y,&b_H_tr_y);
   fTree->SetBranchAddress("H.tr.th",&H_tr_xp,&b_H_tr_xp);
   fTree->SetBranchAddress("H.tr.ph",&H_tr_yp,&b_H_tr_yp);
   fTree->SetBranchAddress("H.tr.p",&H_tr_p,&b_H_tr_p);
-
   fTree->SetBranchAddress("H.tr.tg_dp", &H_tr_tg_dp,&b_H_tr_tg_dp);
- 
-  fTree->SetBranchAddress("H.cer.npe", H_cer_npe,&b_H_cer_npe);
   fTree->SetBranchAddress("H.tr.beta", &H_tr_beta,&b_H_tr_beta);
+
+  //Alternative branch addresses from M.Jones, to be used instead of
+  //the block of track addresses above.
+  /*
+  fTree->SetBranchAddress("H.gtr.x",&H_tr_x,&b_H_tr_x);
+  fTree->SetBranchAddress("H.gtr.y",&H_tr_y,&b_H_tr_y);
+  fTree->SetBranchAddress("H.gtr.th",&H_tr_xp,&b_H_tr_xp);
+  fTree->SetBranchAddress("H.gtr.ph",&H_tr_yp,&b_H_tr_yp);
+  fTree->SetBranchAddress("H.gtr.p",&H_tr_p,&b_H_tr_p);
+  fTree->SetBranchAddress("H.gtr.dp", &H_tr_tg_dp,&b_H_tr_tg_dp);
+  fTree->SetBranchAddress("H.hod.beta", &H_tr_beta,&b_H_tr_beta);
+  */
+
+  fTree->SetBranchAddress("H.cer.npe", H_cer_npe,&b_H_cer_npe);
 
   fTree->SetBranchAddress("H.cal.nclust", &H_cal_nclust,&b_H_cal_nclust);
 
@@ -861,7 +873,7 @@ void THcShowerCalib::SaveAlphas() {
   //
 
   ofstream output;
-  char* fname = Form("pcal.param.%s_%d_%d", fPrefix.c_str(),
+  char* fname = Form("hcal.param.%s_%d_%d", fPrefix.c_str(),
 		     fNstart, fNstopRequested);
   cout << "SaveAlphas: fname=" << fname << endl;
 
